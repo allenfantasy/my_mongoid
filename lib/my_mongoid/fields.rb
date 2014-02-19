@@ -17,7 +17,7 @@ module MyMongoid
       # COPY
       def field(name)
         named = name.to_s
-        # validate
+        # validate REFACTOR
         raise DuplicateFieldError.new if self.fields.keys.include?(named)
 
         add_field(named)

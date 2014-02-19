@@ -1,10 +1,12 @@
-require 'my_mongoid/fields'
+require "my_mongoid/fields"
+require "my_mongoid/attributes"
 
 module MyMongoid
   module Document
     extend ActiveSupport::Concern
 
     include Fields
+    include Attributes
 
     # COPY
     included do
@@ -13,27 +15,9 @@ module MyMongoid
 
     def initialize(attrs = {})
       raise ArgumentError if !attrs.is_a? Hash
-      #attrs ||= {}
-      if !attrs.empty?
-        attrs.each_pair do |key, value|
-          write_attribute(key, value)
-        end
-      end
+      process_attributes(attrs)
     end
 
-    def attributes
-      @attributes ||= {}
-    end
-
-    def read_attribute(key)
-      # raise UnknownAttribute Error if key doesn't exist
-      attributes[key]
-    end
-
-    def write_attribute(key, value)
-      # raise UnknownAttribute Error if key doesn't exist
-      attributes[key] = value
-    end
 
     def new_record?
       true
