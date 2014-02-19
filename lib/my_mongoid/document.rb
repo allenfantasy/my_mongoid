@@ -1,9 +1,14 @@
+require 'my_mongoid/fields'
+
 module MyMongoid
   module Document
+    extend ActiveSupport::Concern
 
-    def self.included(base)
-      base.extend ClassMethods
-      MyMongoid.register_model(base)
+    include Fields
+
+    # COPY
+    included do
+      MyMongoid.register_model(self)
     end
 
     def initialize(attrs = {})
@@ -11,7 +16,7 @@ module MyMongoid
       #attrs ||= {}
       if !attrs.empty?
         attrs.each_pair do |key, value|
-          attributes[key] = value
+          write_attribute(key, value)
         end
       end
     end
@@ -22,12 +27,12 @@ module MyMongoid
 
     def read_attribute(key)
       # raise UnknownAttribute Error if key doesn't exist
-      @attributes[key]
+      attributes[key]
     end
 
     def write_attribute(key, value)
       # raise UnknownAttribute Error if key doesn't exist
-      @attributes[key] = value
+      attributes[key] = value
     end
 
     def new_record?
