@@ -13,7 +13,8 @@ module MyMongoid
       MyMongoid.register_model(self)
     end
 
-    def initialize(attrs = {})
+    def initialize(attrs = nil)
+      attrs ||= {}
       raise ArgumentError if !attrs.is_a? Hash
       process_attributes(attrs)
     end
