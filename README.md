@@ -1,5 +1,5 @@
 # MyMongoid
-![[Build Status]](https://travis-ci.org/allenfantasy/my_mongoid)
+[![Build Status](https://travis-ci.org/allenfantasy/my_mongoid.png?branch=master)](https://travis-ci.org/allenfantasy/my_mongoid)
 
 TODO: Write a gem description
 
