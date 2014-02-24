@@ -40,6 +40,13 @@ describe MyMongoid::Fields do
 
   describe "included" do
     it "has default id field" do
+      expect(klass.new).to respond_to(:id)
+      expect(klass.new).to respond_to(:id=)
+    end
+
+    it "has default _id field as alias" do
+      expect(klass.new).to respond_to(:_id)
+      expect(klass.new).to respond_to(:_id=)
     end
   end
 
