@@ -2,13 +2,13 @@ require "moped"
 require "active_support/inflector"
 
 module MyMongoid
-  class Model
-    def self.collection_name(model)
-      model.name.tableize
+  module Model
+    def collection_name
+      self.class.name.tableize
     end
 
-    def self.collection(model)
-      MyMongoid.session[self.collection_name(model)]
+    def collection
+      MyMongoid.session[self.collection_name]
     end
   end
 end

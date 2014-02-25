@@ -1,5 +1,6 @@
 require "my_mongoid/fields"
 require "my_mongoid/attributes"
+require "my_mongoid/model"
 
 module MyMongoid
   module Document
@@ -7,6 +8,7 @@ module MyMongoid
 
     include Fields
     include Attributes
+    include Model
 
     # COPY
     included do

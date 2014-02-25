@@ -11,11 +11,11 @@ describe "should be able to create a record" do
 
   describe "Model collection" do
     it "collection_name should use active support's titleize method" do
-      expect(MyMongoid::Model.collection_name(TestModel)).to eq(TestModel.name.tableize)
+      expect(TestModel.new.collection_name).to eq(TestModel.name.tableize)
     end
 
     it "should return a model's collection" do
-      expect(MyMongoid::Model.collection(TestModel)).to be_a(Moped::Collection)
+      expect(TestModel.new.collection).to be_a(Moped::Collection)
     end
   end
 end
