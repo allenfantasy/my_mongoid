@@ -7,6 +7,7 @@ require "my_mongoid/version"
 require "my_mongoid/document"
 require "my_mongoid/fields"
 require "my_mongoid/errors"
+require "my_mongoid/config"
 
 module MyMongoid
   extend self
