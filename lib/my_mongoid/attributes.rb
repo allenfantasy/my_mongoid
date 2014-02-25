@@ -25,6 +25,11 @@ module MyMongoid
         end
       end
     end
+
+    def to_document
+      self.attributes
+    end
+
     alias :attributes= :process_attributes
 
   end

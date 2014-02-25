@@ -21,11 +21,6 @@ module MyMongoid
       process_attributes(attrs)
     end
 
-
-    def new_record?
-      true
-    end
-
     module ClassMethods
       def is_mongoid_model?
         # refactor?
