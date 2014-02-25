@@ -9,6 +9,7 @@ require "my_mongoid/fields"
 require "my_mongoid/errors"
 require "my_mongoid/config"
 require "my_mongoid/session"
+require "my_mongoid/model"
 
 module MyMongoid
   extend self
