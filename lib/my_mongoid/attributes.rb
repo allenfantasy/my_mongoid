@@ -20,7 +20,7 @@ module MyMongoid
         attrs.each_pair do |key, value|
           name = key.to_s
           # REFACTOR
-          raise UnknownAttributeError unless self.class.fields.keys.include?(name)
+          raise UnknownAttributeError unless self.class.instance_methods.map! { |i| i.to_s }.include?("#{name}=")
           self.send("#{name}=", value)
         end
       end
