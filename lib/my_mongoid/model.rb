@@ -5,16 +5,8 @@ module MyMongoid
   module Model
     extend ActiveSupport::Concern
 
-    def collection_name
-      self.class.name.tableize
-    end
-
-    def collection
-      MyMongoid.session[self.collection_name]
-    end
-
     def save
-      self.collection.insert(self.to_document)
+      self.class.collection.insert(self.to_document)
       @new_record = false
       true
     end
@@ -29,6 +21,14 @@ module MyMongoid
         model = self.new(attr)
         model.save
         model
+      end
+
+      def collection_name
+        self.name.tableize
+      end
+
+      def collection
+        MyMongoid.session[self.collection_name]
       end
     end
   end

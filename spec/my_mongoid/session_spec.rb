@@ -14,9 +14,15 @@ describe "Should be able to get database session" do
       expect(MyMongoid.session).to be(MyMongoid.session)
     end
 
-    it "should raise MyMongoid::UnconfiguredDatabaseError if host and database are not configured" do
+    it "should raise MyMongoid::UnconfiguredDatabaseError if host or database are not configured" do
       expect {
         MyMongoid.configuration.database = nil
+        MyMongoid.configuration.host = "localhost:999"
+        MyMongoid.session
+      }.to raise_error(MyMongoid::UnconfiguredDatabaseError)
+      expect {
+        MyMongoid.configuration.database = "test"
+        MyMongoid.configuration.host = ""
         MyMongoid.session
       }.to raise_error(MyMongoid::UnconfiguredDatabaseError)
     end

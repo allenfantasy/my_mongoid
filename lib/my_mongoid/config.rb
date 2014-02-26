@@ -6,6 +6,10 @@ module MyMongoid
 
     attr_accessor :host
     attr_accessor :database
+
+    def valid?
+      !(@host.nil? || @host.empty? || @database.nil? || @database.empty?)
+    end
   end
 
   def configuration

@@ -22,18 +22,20 @@ describe "Should be able to configure MyMongoid:" do
 
   describe "MyMongoid.configuration" do
     it "return the single instance of MyMongoid::Configuration" do
+      expect(MyMongoid.configuration).to be_a(MyMongoid::Configuration)
       expect(MyMongoid.configuration).to be(MyMongoid::Configuration.instance)
     end
   end
 
   describe "MyMongoid.configure" do
     it "yield MyMongoid.configuration to a block" do
+      expect { |b|
+        MyMongoid.configure(&b)
+      }.to yield_with_args(MyMongoid::Configuration)
+
       MyMongoid.configure do |config|
-        config.database = "my_mongoid"
-        config.host = "localhost:27017"
+        expect(config).to eq(MyMongoid.configuration)
       end
-      expect(MyMongoid.configuration.database).to eq("my_mongoid")
-      expect(MyMongoid.configuration.host).to eq("localhost:27017")
     end
   end
 end
