@@ -50,6 +50,7 @@ module MyMongoid
 
     def update_document
       self.class.collection.find({ "_id" => self.id }).update(atomic_updates) unless atomic_updates.empty?
+      reset_changed_attributes
     end
 
     def update_attributes(attr)

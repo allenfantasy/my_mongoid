@@ -205,8 +205,10 @@ describe "should be able to create a record" do
         testobj = TestModel.create(:hour => 1)
         testobj.hour = 2
         id = testobj._id
+        expect(testobj.changed?).to be true
         testobj.update_document
         expect(TestModel.find(id).hour).to eq(2)
+        expect(testobj.changed?).to be false
       end
     end
 
