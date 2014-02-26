@@ -19,6 +19,7 @@ module MyMongoid
       attrs ||= {}
       raise ArgumentError if !attrs.is_a? Hash
       process_attributes(attrs)
+      reset_changed_attributes
     end
 
     module ClassMethods

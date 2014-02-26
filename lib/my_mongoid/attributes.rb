@@ -11,6 +11,7 @@ module MyMongoid
 
     def write_attribute(key, value)
       # raise UnknownAttribute Error if key doesn't exist
+      track_changed_attributes(key, value, attributes[key])
       attributes[key] = value
     end
 
