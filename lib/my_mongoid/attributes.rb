@@ -5,12 +5,12 @@ module MyMongoid
     end
 
     def read_attribute(key)
-      # raise UnknownAttribute Error if key doesn't exist
+      raise UnknownAttributeError unless self.fields.has_key?(key)
       attributes[key]
     end
 
     def write_attribute(key, value)
-      # raise UnknownAttribute Error if key doesn't exist
+      raise UnknownAttributeError unless self.fields.has_key?(key)
       track_changed_attributes(key, value, attributes[key])
       attributes[key] = value
     end

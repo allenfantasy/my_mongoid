@@ -91,8 +91,10 @@ module MyMongoid
       end
 
       def instantiate(attr= {})
-        model = self.new(attr)
+        model = self.new
+        attr.each { |key, value| model.write_attribute(key.to_s, value) }
         model.instance_variable_set(:@new_record, false)
+        model.send(:reset_changed_attributes)
         model
       end
 
